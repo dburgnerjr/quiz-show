@@ -21,8 +21,12 @@ function Quiz() {
         },
     ];
 
+    var optionSelected = "None";
+
+    const [optionSelected, setOptionSelected] = useState("None");
+
     function handleSelectOption(option) {
-        console.log(option);
+        setOptionSelected(option);
     }
 
     return <div>
@@ -30,7 +34,9 @@ function Quiz() {
                 <p className="question">{questionBank[0].question}</p>
                 {questionBank[0].options.map((option) => (
                     <button className="option" onClick={() => handleSelectOption(option)}> {option} </button>
-                ))};
+                ))}
+
+                Option Selected: {optionSelected}
 
                 <div className="nav-buttons">
                     <button> Previous </button>
