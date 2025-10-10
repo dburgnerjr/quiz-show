@@ -25,6 +25,7 @@ function Quiz() {
 
     const [userAnswers, setUserAnswers] = useState(initialAnswers);
     const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [isQuizFinished, setIsQuizFinished] = useState(false);
 
     const selectedAnswer = userAnswers[currentQuestion];
 
@@ -36,12 +37,19 @@ function Quiz() {
     }
 
     function goToNext() {
-        setCurrentQuestion(currentQuestion + 1);
+        if (currentQuestion === questionBank.length - 1) 
+            setIsQuizFinished(true);
+        else
+            setCurrentQuestion(currentQuestion + 1);
     }
 
     function goToPrev() {
         if (currentQuestion > 0)
             setCurrentQuestion(currentQuestion - 1);
+    }
+
+    if (isQuizFinished) {
+        return <Results />;
     }
     return <div>
                 <h2>Question {currentQuestion + 1}</h2>
