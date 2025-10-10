@@ -1,5 +1,42 @@
 function Quiz() {
-    return <div>Quiz</div>;
+    const questionBank = [
+        {
+            question: "What is the capital of France?",
+            options: ["Berlin", "London", "Paris", "Rome"],
+            answer: "Paris",
+        },
+        {
+            question: "Which language is used for web apps?",
+            options: ["PHP", "Python", "JavaScript", "All"],
+            answer: "All",
+        },
+        {
+            question: "What does JSX stands for?",
+            options: [
+                "JavaScript XML", 
+                "Java Syntax eXtension", 
+                "Just a Simple eXample",
+                "None of the above"],
+            answer: "JavaScript XML",
+        },
+    ];
+
+    function handleSelectOption(option) {
+        console.log(option);
+    }
+
+    return <div>
+                <h2>Question 1</h2>
+                <p className="question">{questionBank[0].question}</p>
+                {questionBank[0].options.map((option) => (
+                    <button className="option" onClick={() => handleSelectOption(option)}> {option} </button>
+                ))};
+
+                <div className="nav-buttons">
+                    <button> Previous </button>
+                    <button> Next </button>
+                </div>
+           </div>;
 }
 
 export default Quiz;
