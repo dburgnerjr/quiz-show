@@ -21,8 +21,6 @@ function Quiz() {
         },
     ];
 
-    var optionSelected = "None";
-
     const [optionSelected, setOptionSelected] = useState("None");
 
     function handleSelectOption(option) {
