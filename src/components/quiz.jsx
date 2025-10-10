@@ -1,3 +1,6 @@
+import { useState } from "react";
+import Results from "./results";
+
 function Quiz() {
     const questionBank = [
         {
@@ -48,13 +51,20 @@ function Quiz() {
             setCurrentQuestion(currentQuestion - 1);
     }
 
-    if (isQuizFinished) {
-        return <Results />;
+    function restartQuiz() {
+        setUserAnswers(initialAnswers);
+        setCurrentQuestion(0);
+        setIsQuizFinished(false);
     }
+
+    if (isQuizFinished) {
+        return <Results userAnswers={userAnswers} questionBank={questionBank} restartQuiz={restartQuiz} />;
+    }
+
     return <div>
                 <h2>Question {currentQuestion + 1}</h2>
                 <p className="question">{questionBank[currentQuestion].question}</p>
-                {questionBank[0].options.map((option) => (
+                {questionBank[currentQuestion].options.map((option) => (
                     <button className={"option" + (selectedAnswer === option ? " selected" : "")} 
                     onClick={() => handleSelectOption(option)}> {option} </button>
                 ))}
